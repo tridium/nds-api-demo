@@ -1,0 +1,51 @@
+# Application properties
+
+spring:
+  main:
+    web-application-type: NONE
+  profiles:
+    active: local
+
+# NDS API parameters
+# You should not need to change any of these
+nds:
+  api:
+    # The Niagara Data Service Endpoint
+    host: https://www.niagara-cloud.com
+
+    # HTTP request timeout in seconds
+    timeout: 30
+
+    # URL path to the Data Egress service for telemetry data
+    dataEgressRoute: /api/v1/egress/telemetry
+
+    # URL path to the Entity Model Service for model data
+    emsRoute: /api/v1/entitymodel/customers/%s/pointNames
+
+    # URL path to the Command Service for making command requests
+    commandRoute: /api/v1/control/devices/%s/commands/
+
+  idp:
+    scope: ncp:read
+
+    # Identity Provider endpoint
+    tokenUri: https://auth.pingone.com/2bb83e4b-dd73-47d3-984b-6e601302d766/as/token
+    clientId: enter-your-service-account-client-id-here
+    clientSecret: enter-your-service-account-client-secret-here
+
+# Query Configuration data
+demo:
+  # System GUID from CloudConnectionService / Authenticators / RpkAuthenticator / System Guid
+  systemGuid: "75cb1549-ba2a-46c4-88b9-76c98d7bcdfe"
+
+  # Customer ID assigned to you in the NCS onboarding
+  # Note: You can find this from the URL of your customer home page at www.niagara-cloud.com/customers/XXXX
+  customerId: 53
+
+  # EMS Search Criteria
+  searchCriteria:
+    searchType: # search type: "pointName", "tagName", or "tagValue"
+    searchItems: # space-separated list of search items, union/intersection semantics vary as appropriate
+    comparisonType: # comparison type: "any", "exact", "startswith", "endswith", "contains", "equals"
+  startTimeStr: # start time for telemetry query in ISO-8601 format, ex. "2022-02-02T00:00:00.000Z"
+  endTimeStr: # end time for telemetry query in ISO-8601 format, ex. "2023-05-20T23:59:59.999Z"
